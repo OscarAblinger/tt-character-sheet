@@ -1,0 +1,3 @@
+{
+  "./**/*.{ts,json,svelte,html}": "npm run format --workspaces"
+}

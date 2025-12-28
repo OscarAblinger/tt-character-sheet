@@ -10,13 +10,7 @@ export default [
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
   {
-    ignores: [
-      "**/.history",
-      "**/.vscode",
-      "**/coverage",
-      "**/dist",
-      "**/node_modules",
-    ],
+    ignores: ["**/.history", "**/.vscode", "**/coverage", "**/dist", "**/node_modules"],
   },
   {
     plugins: {

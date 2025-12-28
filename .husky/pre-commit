@@ -1,1 +1,1 @@
-cd workspaces/character-sheet && npx lint-staged
+npx lint-staged

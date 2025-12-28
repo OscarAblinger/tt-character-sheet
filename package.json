@@ -12,16 +12,11 @@
   },
   "homepage": "https://github.com/OscarAblinger/tt-character-sheet#readme",
   "workspaces": [
-    "workspaces\\character-sheet"
+    "workspaces\\character-sheet",
+    "workspaces\\character-sheet-ui"
   ],
-  "scripts": {
-    "build": "cd workspaces/character-sheet && npm run build",
-    "test": "cd workspaces/character-sheet && npm run test",
-    "test:coverage": "cd workspaces/character-sheet && npm run test:coverage",
-    "lint": "cd workspaces/character-sheet && npm run lint",
-    "format": "cd workspaces/character-sheet && npm run format"
-  },
-  "dependencies": {
-    "husky": "^9.1.7"
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7"
   }
 }

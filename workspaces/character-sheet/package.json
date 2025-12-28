@@ -15,9 +15,10 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "rimraf build/**/* && tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts && copyfiles ./package.json build",
-    "test": "vitest",
-    "test:coverage": "vitest --coverage",
-    "lint": "eslint . --ext .ts",
+    "test:coverage": "vitest --run --coverage",
+    "test:watch": "vitest",
+    "test": "vitest --run",
+    "lint": "prettier --check . && eslint . --ext .ts",
     "format": "prettier . --write"
   },
   "devDependencies": {
@@ -30,7 +31,6 @@
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.5.1",
     "jiti": "^2.4.2",
-    "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "stylelint": "^16.21.1",
