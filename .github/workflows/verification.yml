@@ -41,3 +41,5 @@ jobs:
           json-summary-path: "./workspaces/character-sheet-ui/coverage/coverage-summary.json"
           json-final-path: "./workspaces/character-sheet-ui/coverage/coverage-final.json"
           threshold-icons: "{0: '🔴', 70: '🟠', 90: '🟢'}"
+      - run: npm run lint --workspaces
+        if: always()
