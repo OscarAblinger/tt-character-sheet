@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [25.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -22,15 +22,13 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build --workspaces
-      - run: npm test:coverage --workspaces
+      - run: npm run test:coverage --workspaces
       - name: "character-sheet Coverage"
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
         with:
           name: "character-sheet"
           working-directory: "./workspaces/character-sheet"
-          json-summary-path: "./workspaces/character-sheet/coverage/coverage-summary.json"
-          json-final-path: "./workspaces/character-sheet/coverage/coverage-final.json"
           threshold-icons: "{0: '🔴', 70: '🟠', 90: '🟢'}"
       - name: "character-sheet-ui Coverage"
         if: always()
@@ -38,8 +36,6 @@ jobs:
         with:
           name: "character-sheet-ui"
           working-directory: "./workspaces/character-sheet-ui"
-          json-summary-path: "./workspaces/character-sheet-ui/coverage/coverage-summary.json"
-          json-final-path: "./workspaces/character-sheet-ui/coverage/coverage-final.json"
           threshold-icons: "{0: '🔴', 70: '🟠', 90: '🟢'}"
       - run: npm run lint --workspaces
         if: always()
