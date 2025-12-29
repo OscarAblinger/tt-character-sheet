@@ -1,0 +1,43 @@
+name: Build & Test
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build --workspaces
+      - run: npm test:coverage --workspaces
+      - name: "character-sheet Coverage"
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          name: "character-sheet"
+          working-directory: "./workspaces/character-sheet"
+          json-summary-path: "./workspaces/character-sheet/coverage/coverage-summary.json"
+          json-final-path: "./workspaces/character-sheet/coverage/coverage-final.json"
+          threshold-icons: "{0: '🔴', 70: '🟠', 90: '🟢'}"
+      - name: "character-sheet-ui Coverage"
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          name: "character-sheet-ui"
+          working-directory: "./workspaces/character-sheet-ui"
+          json-summary-path: "./workspaces/character-sheet-ui/coverage/coverage-summary.json"
+          json-final-path: "./workspaces/character-sheet-ui/coverage/coverage-final.json"
+          threshold-icons: "{0: '🔴', 70: '🟠', 90: '🟢'}"

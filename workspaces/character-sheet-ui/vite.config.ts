@@ -6,6 +6,10 @@ export default defineConfig({
   plugins: [sveltekit()],
 
   test: {
+    coverage: {
+      reporter: ["json-summary", "json", "html"],
+      reportOnFailure: true,
+    },
     workspace: [
       {
         extends: "./vite.config.ts",

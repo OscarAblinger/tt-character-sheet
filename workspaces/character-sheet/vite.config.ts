@@ -39,4 +39,10 @@ export default defineConfig({
       "@@": path.resolve(__dirname),
     },
   },
+  test: {
+    coverage: {
+      reporter: ["json-summary", "json", "html"],
+      reportOnFailure: true,
+    },
+  },
 });
